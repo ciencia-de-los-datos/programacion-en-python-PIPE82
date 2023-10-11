@@ -458,6 +458,7 @@ def pregunta_09():
 
     # Ordenamos el diccionario alfabeticamente
     respuesta9 = sorted(respuesta9.items())
+    respuesta9 = dict(respuesta9)
     return respuesta9
 
 
@@ -531,6 +532,7 @@ def pregunta_11():
 
     # Ordenamos el diccionario alfabeticamente
     respuesta11 = sorted(respuesta11.items())
+    respuesta11 = dict(respuesta11)
 
 
     return respuesta11
@@ -568,5 +570,6 @@ def pregunta_12():
 
     # Ordenamos el diccionario alfabeticamente
     respuesta12 = sorted(respuesta12.items())
+    respuesta12 = dict(respuesta12)
 
     return respuesta12
