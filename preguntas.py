@@ -14,7 +14,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 #conexcion general
 #((data.csv)) ruta relativa
 
-with open("C:/Users/Andres/Documents/GitHub/programacion-en-python-PIPE82/data.csv", "r") as file:
+with open("data.csv", "r") as file:
     archivo = file.readlines()
 filas=len(archivo)
 # Limpieza
@@ -85,7 +85,7 @@ def pregunta_02():
     dict = sorted(dict.items())
     #respuesta2 = (*dict,)
     respuesta2=dict
-    print(type(respuesta2))
+    #print(type(respuesta2))
     #print(respuesta2)
 
 
@@ -128,7 +128,7 @@ def pregunta_03():
         respuesta3.append((cod, suma))
     #respuesta3 = (*respuesta3,)
     respuesta3=respuesta3
-    print(type(respuesta3))
+    #print(type(respuesta3))
     #print(respuesta3)
     return respuesta3
 
@@ -184,7 +184,7 @@ def pregunta_04():
     dict = sorted(dict.items())
     #respuesta4 = (*dict,)
     respuesta4=dict
-    print(type(respuesta4))
+    #print(type(respuesta4))
     #print(respuesta4)
 
     return respuesta4
