@@ -562,7 +562,7 @@ def pregunta_12():
         for item in value_lista:
             key1, value = item.split(':')  # Separamos el valor de las sublistas de la columna 5
 
-            # Si la llave ya existe, sumamos el valor de la columna 1, si no, asignamos el valor
+            
             if key in respuesta12:
                 respuesta12[key] += int(value)
             else:
