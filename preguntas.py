@@ -11,6 +11,18 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+#conexcion general
+#((data.csv)) ruta relativa
+
+with open("data.csv", "r") as file:
+    archivo = file.readlines()
+filas=len(archivo)
+# Limpieza
+#print(archivo)
+#print(type(archivo))
+archivo_eventos = [line.replace("\n", "") for line in archivo]
+#print(type(archivo_eventos))
+archivo_eventos = [line.split("\t") for line in archivo_eventos]
 
 
 def pregunta_01():
@@ -21,7 +33,15 @@ def pregunta_01():
     214
 
     """
-    return
+    registros = len(archivo_eventos)
+    sum = 0
+
+    for n in range((registros)):
+        dato = (archivo_eventos[n])
+        op1 = int(dato[1])
+        sum = sum + op1
+   
+    return sum
 
 
 def pregunta_02():
@@ -39,7 +59,37 @@ def pregunta_02():
     ]
 
     """
-    return
+    registros = len(archivo_eventos)
+    numero = 0
+    word_counts = []
+    respuesta = []
+    for n in range((registros)):
+        dato = (archivo_eventos[n])
+        op1 = str(dato[0])
+        word_counts.append(op1)
+
+    #print(word_counts, "pipe")
+
+    # se creara un diccionario
+    dict = {}
+    numero = 0
+    for n in word_counts:
+        if n in dict:
+            # contar el numero de veces
+            dict[n] += 1
+        else:
+            dict[n] = 1
+
+    # primero ordenar por orden alfabetico
+    #print((dict), "pipe")
+    dict = sorted(dict.items())
+    #respuesta2 = (*dict,)
+    respuesta2=dict
+    #print(type(respuesta2))
+    #print(respuesta2)
+
+
+    return respuesta2
 
 
 def pregunta_03():
@@ -57,7 +107,30 @@ def pregunta_03():
     ]
 
     """
-    return
+    registros = len(archivo_eventos)
+    numero = 0
+    word_counts = []
+    respuesta3 = []
+    for n in range((registros)):
+        dato = (archivo_eventos[n])
+        op1 = str(dato[0])
+        if op1 not in word_counts:
+            word_counts.append(op1)
+
+    word_counts = sorted(word_counts)
+
+    for n in word_counts:
+        cod = n
+        suma = 0
+        for n1 in archivo_eventos:
+            if n1[0] == n:
+                suma = suma + int(n1[1])
+        respuesta3.append((cod, suma))
+    #respuesta3 = (*respuesta3,)
+    respuesta3=respuesta3
+    #print(type(respuesta3))
+    #print(respuesta3)
+    return respuesta3
 
 
 def pregunta_04():
@@ -82,7 +155,40 @@ def pregunta_04():
     ]
 
     """
-    return
+    fechas = []
+    for n in archivo_eventos:
+        cadena = n[2]
+        separador = "-"
+        separado = cadena.split(separador)
+        fechas.append((separado))
+
+    #print(fechas)
+
+    meses = []
+    for n in fechas:
+        op1 = str(n[1])
+        meses.append(op1)
+
+    #print(meses)
+
+    # se creara un diccionario
+    dict = {}
+    numero = 0
+    for n in meses:
+        if n in dict:
+            # contar el numero de veces
+            dict[n] += 1
+        else:
+            dict[n] = 1
+
+    dict = sorted(dict.items())
+    #respuesta4 = (*dict,)
+    respuesta4=dict
+    #print(type(respuesta4))
+    #print(respuesta4)
+
+    return respuesta4
+
 
 
 def pregunta_05():
@@ -100,7 +206,38 @@ def pregunta_05():
     ]
 
     """
-    return
+    registros = len(archivo_eventos)
+    numero = 0
+    word_counts = []
+    respuesta5 = []
+    for n in range((registros)):
+        dato = (archivo_eventos[n])
+        op1 = str(dato[0])
+        if op1 not in word_counts:
+            # puedo iterar para conocer el maximo y el minimo
+            word_counts.append(op1)
+
+    word_counts = sorted(word_counts)
+    #print(word_counts)
+
+    for n in (word_counts):
+        dato = n[0]
+        x_max = 0
+        x_min = 99999
+        # hallar el maximo
+        for n in archivo_eventos:
+            dato2 = n[0]
+            # print(dato,lista2)
+            if dato == dato2:  # igualdad de letra para buscar el mayor y el menor
+                max = int(n[1])
+                min = int(n[1])
+                if x_max < max:
+                    x_max = max
+                if x_min > min:
+                    x_min = min
+        respuesta5.append((dato, x_max, x_min))
+
+    return respuesta5
 
 
 def pregunta_06():
@@ -125,7 +262,55 @@ def pregunta_06():
     ]
 
     """
-    return
+    claves = []
+
+    for n in archivo_eventos:
+        cadena = n[4]
+        separador = ","
+        separado = cadena.split(separador)
+        claves.append(separado)
+    #print(claves)
+
+    #print(type(claves))
+
+    new_clave = []
+    for n in claves:
+        cadena = n
+        for n1 in n:
+            new_clave.append(n1.split(':'))
+
+    #print(new_clave)
+
+    # seleccionar las claves
+    numero = 0
+    word_counts = []
+    respuesta6 = []
+    for n in new_clave:
+        op1 = (n[0])
+        if op1 not in word_counts:
+            word_counts.append(op1)
+
+    word_counts = sorted(word_counts)
+    #print(word_counts)
+
+    for n in (word_counts):
+        dato = n
+        x_max = 0
+        x_min = 99999
+        # hallar el maximo
+        for n1 in new_clave:
+            dato2 = n1[0]
+            if dato == dato2:  # igualdad de letra para buscar el mayor y el menor
+                max = int(n1[1])
+                min = int(n1[1])
+
+                if x_max < max:
+                    x_max = max
+                if x_min > min:
+                    x_min = min
+        respuesta6.append((dato, x_min, x_max))
+    #print(respuesta6)
+    return respuesta6
 
 
 def pregunta_07():
@@ -149,7 +334,32 @@ def pregunta_07():
     ]
 
     """
-    return
+    numero = 0
+    word_counts = []
+    counts = []
+
+    for n in archivo_eventos:
+        op1 = int((n[1]))
+        if op1 not in counts:
+            counts.append(op1)
+
+    counts = sorted(counts)
+    #print(counts)
+
+    for n in counts:
+        dato = n
+        variable = ""
+        for n1 in archivo_eventos:
+            if dato == int(n1[1]):
+                if variable == "":
+                    variable = n1[0]
+                else:
+                    variable = variable + ',' + n1[0]
+        lista_letras: str = variable.split(",")
+        word_counts.append((dato, (lista_letras)))
+
+    respuesta7 = word_counts
+    return respuesta7
 
 
 def pregunta_08():
@@ -174,7 +384,36 @@ def pregunta_08():
     ]
 
     """
-    return
+    numero = 0
+    word_counts = []
+    counts = []
+
+    for n in archivo_eventos:
+        op1 = int((n[1]))
+        if op1 not in counts:
+            counts.append(op1)
+
+    counts = sorted(counts)
+    #print(counts)
+
+    for n in counts:
+        dato = n
+        variable = ""
+        for n1 in archivo_eventos:
+            if dato == int(n1[1]):
+                if n1[0] not in variable:
+                    if variable == "":
+                        variable = n1[0]
+                    else:
+                        variable = variable + ',' + n1[0]
+
+        lista_letras: str = variable.split(",")
+        lista_letras = sorted(lista_letras)
+        word_counts.append((dato, (lista_letras)))
+
+    respuesta8 = word_counts
+
+    return respuesta8
 
 
 def pregunta_09():
@@ -197,7 +436,30 @@ def pregunta_09():
     }
 
     """
-    return
+    cadena = []  # Creamos una lista con los elementos de la columna 5
+
+    # Recorremos cada lina del dataset
+    for line in archivo_eventos:
+        cadena.append(line[4].split(
+            ','))  # Creamos sublistas con los elementos de la columna 5 y los almacenamos a la lista cadena
+
+    # Creamos un diccionario vacío para almacenar la respuesta
+    respuesta9 = {}
+
+    # Iteramos a través de las sublistas en la lista cadena
+    for sublista in cadena:
+        for item in sublista:
+            key, value = item.split(':')  # Por cada item en las sublistas separamos la llave y el valor
+            # Si la llave ya existe, la sumamos, sino, asignamos el valor
+            if key in respuesta9:
+                respuesta9[key] += 1
+            else:
+                respuesta9[key] = 1
+
+    # Ordenamos el diccionario alfabeticamente
+    respuesta9 = sorted(respuesta9.items())
+    respuesta9 = dict(respuesta9)
+    return respuesta9
 
 
 def pregunta_10():
@@ -218,7 +480,23 @@ def pregunta_10():
 
 
     """
-    return
+    respuesta10 = []  # Creamos la lista que contendrá las tuplas
+
+    # Recorreroms las sublistas del set de datos
+    for sublista in archivo_eventos:
+        item1 = sublista[0]  # Tomamos el elemento de la primera columna
+        item2 = sublista[3].split(',')  # Creamos una sublista con los elementos de la columna 4
+        contador_item2 = 0
+        for element in item2:
+            contador_item2 += 1  # Contamos el número de elementos que hay en la columna 4
+            item3 = sublista[4].split(',')  # Creamos una sublista con los elementos de la columna 5
+            contador_item3 = 0
+            for element in item3:
+                contador_item3 += 1  # Contamos el número de elementos que hay en la columna 5
+        tupla = (item1, contador_item2, contador_item3)  # Creamos la tupla
+        respuesta10.append(tupla)  # Almacenamos la tupla en la lista de respuesta
+
+    return respuesta10
 
 
 def pregunta_11():
@@ -236,10 +514,28 @@ def pregunta_11():
         "f": 134,
         "g": 35,
     }
-
+    
 
     """
-    return
+    respuesta11 = {}  # Creamos el diccionario que contendrá la respuesta
+    # Recorreroms las sublistas del set de datos
+    for sublista in archivo_eventos:
+        key_lista = sublista[3].split(',')  # Creamos una sublista de llaves con los elementos de la columna 4
+        value = int(sublista[1])  # Tomamos el elemento de la columna 2 y lo convertimos a integer
+
+        # Recorremos cada elemento de la sublista de lalves
+        for key in key_lista:
+            if key in respuesta11:
+                respuesta11[key] += value
+            else:
+                respuesta11[key] = value
+
+    # Ordenamos el diccionario alfabeticamente
+    respuesta11 = sorted(respuesta11.items())
+    respuesta11 = dict(respuesta11)
+
+
+    return respuesta11
 
 
 def pregunta_12():
@@ -257,4 +553,23 @@ def pregunta_12():
     }
 
     """
-    return
+    respuesta12 = {}  # Creamos el diccionario que contendrá la respuesta
+    # Recorreroms las sublistas del set de datos
+    for sublista in archivo_eventos:
+        key = sublista[0]  # Tomamos el elemento de la primera columna como llave
+        value_lista = sublista[4].split(',')  # Creamos una sublista con los elementos de la columna 5
+
+        for item in value_lista:
+            key1, value = item.split(':')  # Separamos el valor de las sublistas de la columna 5
+
+            
+            if key in respuesta12:
+                respuesta12[key] += int(value)
+            else:
+                respuesta12[key] = int(value)
+
+    # Ordenamos el diccionario alfabeticamente
+    respuesta12 = sorted(respuesta12.items())
+    respuesta12 = dict(respuesta12)
+
+    return respuesta12
